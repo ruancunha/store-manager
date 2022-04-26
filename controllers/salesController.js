@@ -17,6 +17,8 @@ const getSalesById = async (req, res) => {
 
 const createSales = async (req, res) => {
   const { body } = req;
+  // console.log("Entrou no controller createSales");
+  // console.log(body);
   const createdSale = await salesServices.createSales(body);
 
   if (createdSale.message) return res.status(400).json(createdSale);

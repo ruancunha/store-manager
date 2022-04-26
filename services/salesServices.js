@@ -15,6 +15,8 @@ const getSalesById = async (id) => {
 const createSales = async (body) => {
   try {
     const id = await salesModel.createSales();
+    // console.log("Entrou no services createSales");
+    // console.log(body);
     await Promise.all(body
       .map(async (p) => salesModel.createSalesProducts(id, p.productId, p.quantity)));
 

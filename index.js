@@ -33,13 +33,19 @@ app.put('/products/:id',
 
 app.delete('/products/:id', productsController.deleteProduct);
 
+app.post('/sales',
+  validateSales.valProductIdArray,
+  validateSales.valQuantityArray,
+  salesController.createSales);
+
 app.get('/sales', salesController.getSales);
 
 app.get('/sales/:id', salesController.getSalesById);
 
-app.post('/sales', salesController.createSales);
-
-app.put('/sales/:id', validateSales.valQuantityArray, salesController.updateSales);
+app.put('/sales/:id',
+  validateSales.valProductIdArray,
+  validateSales.valQuantityArray,
+  salesController.updateSales);
 
 app.listen(process.env.PORT, () => {
   console.log(`Escutando na porta ${process.env.PORT}`);

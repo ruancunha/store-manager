@@ -49,6 +49,7 @@ const createSales = async () => {
 };
 
 const createSalesProducts = async (salesId, productId, quantity) => {
+  // console.log("Entrou no model createSales");
   const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
   VALUES (?, ?, ?)`;
   await connection.execute(query, [salesId, productId, quantity]);
