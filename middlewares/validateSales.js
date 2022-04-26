@@ -15,7 +15,16 @@ const valQuantity = (req, res, next) => {
   next();
 };
 
+const valQuantityArray = (req, res, next) => {
+  const arr = req.body;
+  if (arr.some((value) => value < 1)) {
+    return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
+  }
+  next();
+};
+
 module.exports = {
   valProductId,
   valQuantity,
+  valQuantityArray,
 };

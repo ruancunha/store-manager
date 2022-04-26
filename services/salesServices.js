@@ -24,8 +24,20 @@ const createSales = async (body) => {
   }
 };
 
+const updateSales = async (saleId, products) => {
+  try {
+    await Promise.all(products
+      .map(async (p) => salesModel.updateSales(p.quantity, saleId, p.productId)));
+
+    return { saleId, itemUpdated: products };
+  } catch (error) {
+    return { message: error.message };
+  }
+};
+
 module.exports = {
   getSales,
   getSalesById,
   createSales,
+  updateSales,
 };
