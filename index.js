@@ -31,6 +31,8 @@ app.put('/products/:id',
   validateProduct.valQuantity,
   productsController.editProduct);
 
+app.delete('/products/:id', productsController.deleteProduct);
+
 app.get('/sales', salesController.getSales);
 
 app.get('/sales/:id', salesController.getSalesById);
