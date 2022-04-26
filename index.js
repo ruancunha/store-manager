@@ -26,10 +26,10 @@ app.post('/products',
   validateProduct.valQuantity,
   productsController.createProduct);
 
-app.put('/products',
+app.put('/products/:id',
   validateProduct.valName,
   validateProduct.valQuantity,
-  productsController.updateProduct);
+  productsController.editProduct);
 
 app.get('/sales', salesController.getSales);
 
