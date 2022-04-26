@@ -3,6 +3,8 @@ const salesServices = require('../services/salesServices');
 const getSales = async (_req, res) => {
   const sales = await salesServices.getSales();
 
+  if (sales.message) return res.status(404).json(sales.message);
+
   res.status(200).json(sales);
 };
 
@@ -19,7 +21,7 @@ const createSales = async (req, res) => {
   const { body } = req;
   const createdSale = await salesServices.createSales(body);
 
-  if (createdSale.message) return res.status(400).json(createdSale);
+  if (createdSale.message) return res.status(createdSale.status).json(createdSale);
 
   return res.status(201).json(createdSale);
 };
