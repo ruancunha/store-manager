@@ -49,7 +49,6 @@ const createSales = async () => {
 };
 
 const createSalesProducts = async (salesId, productId, quantity) => {
-  // console.log("Entrou no model createSales");
   const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
   VALUES (?, ?, ?)`;
   await connection.execute(query, [salesId, productId, quantity]);
@@ -63,10 +62,18 @@ const updateSales = async (quantity, saleId, productId) => {
   return true;
 };
 
+const deleteSales = async (id) => {
+  const query = 'DELETE FROM StoreManager.sales WHERE id = ?';
+  await connection.execute(query, [id]);
+
+  return true;
+};
+
 module.exports = {
   getSales,
   getSalesById,
   createSales,
   createSalesProducts,
   updateSales,
+  deleteSales,
 };

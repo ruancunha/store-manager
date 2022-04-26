@@ -47,6 +47,8 @@ app.put('/sales/:id',
   validateSales.valQuantityArray,
   salesController.updateSales);
 
+app.delete('/sales/:id', salesController.deleteSales);
+
 app.listen(process.env.PORT, () => {
   console.log(`Escutando na porta ${process.env.PORT}`);
 });

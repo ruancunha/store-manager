@@ -15,8 +15,6 @@ const getSalesById = async (id) => {
 const createSales = async (body) => {
   try {
     const id = await salesModel.createSales();
-    // console.log("Entrou no services createSales");
-    // console.log(body);
     await Promise.all(body
       .map(async (p) => salesModel.createSalesProducts(id, p.productId, p.quantity)));
 
@@ -37,9 +35,24 @@ const updateSales = async (saleId, products) => {
   }
 };
 
+const deleteSales = async (id) => {
+  try {
+    const checkId = await salesModel.getSalesById(id);
+    if (checkId === null) {
+      console.log("entrou no if do delete");
+      return { message: 'Sale not found' };
+    }
+    await salesModel.deleteSales(id);
+    return true;
+  } catch (error) {
+    return { message: error.message };
+  }
+};
+
 module.exports = {
   getSales,
   getSalesById,
   createSales,
   updateSales,
+  deleteSales,
 };
